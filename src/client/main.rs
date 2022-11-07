@@ -65,6 +65,9 @@ fn update_statuses(cx: Scope) {
                         let mut writable = statuses.write();
                         writable.extend(new_statuses);
                         writable.sort_by(|a, b| b.created_at.cmp(&a.created_at));
+                        if writable.len() > 512 {
+                            writable.truncate(512);
+                        }
                         drop(writable);
                     }
 
