@@ -125,10 +125,14 @@ fn About(cx: Scope) -> Element {
             "This is an very early version of my aggregator. I've been learning the framework, and been doing genomics much longer than HTML/CSS lately! So give me some time. I can picture this becoming a full client as well."
         }
         p {
-            "As I get the hang of it, expect fast iteration. Open to suggestions."
+            "As I get the hang of this framework, expect fast iteration. Open to suggestions."
         }
         p {
             "Just tested positive for covid, so I'll be taking it easy this week. Sorry folks!"
+        }
+        a {
+            href: "https://github.com/jguhlin/scikiwi",
+            "GitHub Repo"
         }
         p {
             strong { "'Rules'" }
@@ -137,7 +141,36 @@ fn About(cx: Scope) -> Element {
                     "Don't leave any Mastodon client open when you aren't using it. It creates strain on the servers."
                 }
             }
-        
+        }
+        p {
+            strong { "Built With" }
+            ul {
+                li {
+                    a {
+                        href: "https://www.rust-lang.org/",
+                        "Rust Lang"
+                    }
+                }
+                li {
+                    a {
+                        href: "https://dioxuslabs.com/",
+                        "Dioxus",
+                    }
+                }
+                li {
+                    a {
+                        href: "https://joinmastodon.org/",
+                        "Mastodon"
+                    }
+                }
+                li { 
+                    a {
+                        href: "https://docs.joinmastodon.org/client/intro/",
+                        "Mastodon Client API"
+
+                    }
+                }
+            }
         }
     ))
 }
