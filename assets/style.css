@@ -1,0 +1,127 @@
+.columns {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.left_column {
+  flex: 15%;
+  background-color: rgb(25,27,34);
+}
+
+.middle_column {
+  flex: 50%;
+  background-color: rgb(40,44,55);
+  text-align: center;
+}
+
+.right_column {
+  flex: 25%;
+  background-color: rgb(25,27,34);
+  text-align: left;
+  padding: 25px;
+}
+
+.statuses div {
+  width: 80%; 
+  text-align: left;
+}
+
+.status {
+  padding: 8px 10px 8px 68px;
+  position: relative;
+  min-height: 54px;
+  border-bottom: 1px solid #393f4f;
+  cursor: auto;
+  opacity: 1;
+  -webkit-animation: fade .15s linear;
+  animation: fade .15s linear;
+  width: 100%;
+}
+
+.status_avatar {
+  height: 64px;
+  width: 64px;
+  left: 10px;
+  /* position: absolute; */
+  top: 10px; 
+}
+
+.status_info {
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.status_author {
+  display: block;
+  max-width: 100%;
+  padding-right: 25px;
+  color: #fff;
+  font-weight: 700;
+}
+
+.status_acct {
+  display: block;
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+  padding-right: 25px;
+  color: rgb(163, 163, 163);
+  font-weight: 400;
+}
+
+/* Remove underline from links with the class "status_author */
+.status_author a {
+  text-decoration: none;
+}
+
+.status_author a:hover {
+  text-decoration: underline;
+}
+
+.status_author a:active {
+  text-decoration: underline;
+}
+
+.status_author a:visited {
+  text-decoration: none;
+}
+
+.status_author a:link {
+  text-decoration: none;
+}
+
+.status_content {
+  position: relative;
+  font-size: 15px;
+  line-height: 20px;
+  word-wrap: break-word;
+  font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-top: 2px;
+  color: #fff;
+}
+
+.status_content a {
+  color: #d9e1e8;
+  text-decoration: none;
+}
+
+body {
+    font-family: "mastodon-font-sans-serif",sans-serif;
+    background: #191b22;
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 400;
+    color: #fff;
+    text-rendering: optimizelegibility;
+    font-feature-settings: "kern";
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    text-size-adjust: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
