@@ -189,6 +189,7 @@ fn Statuses(cx: Scope) -> Element {
                 let server_icon = icons.get(s.server_base.as_ref().unwrap()).unwrap_or(&String::new()).clone();
                 rsx! (
                         StatusItem {
+                            server: s.server_base.as_ref().unwrap().clone(),
                             server_icon: server_icon,
                             avatar: s.account.avatar.clone(),
                             display_name: s.account.display_name.clone(),
@@ -243,6 +244,10 @@ fn StatusItem(cx: Scope<StatusProps>) -> Element {
             p {
                 a {
                     href: "{cx.props.url}",
+                    "View on {cx.props.server}"
+                }
+                a {
+                    href: "{cx.props.url}",
                     class: "status_date",
                     style: "color: #DCDCDC; text-decoration: none; font-size: 0.9em; font-weight: 400; margin-left: 0.5em; margin-right: 0.5em;",
                     "{cx.props.created_at}"
@@ -272,6 +277,7 @@ fn StatusItem(cx: Scope<StatusProps>) -> Element {
 
 #[derive(PartialEq, Props)]
 pub struct StatusProps {
+    pub server: String,
     pub server_icon: Option<String>,
     pub avatar: String,
     pub display_name: String,
