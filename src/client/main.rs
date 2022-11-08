@@ -23,7 +23,7 @@ fn main() {
     // dioxus::desktop::launch(app);
 }
 
-static SERVERS: [&str; 19] = [
+static SERVERS: [&str; 20] = [
     "https://genomic.social",
     "https://ecoevo.social",
     "https://sci.kiwi",
@@ -50,6 +50,7 @@ static SERVERS: [&str; 19] = [
     "https://vis.social",
     "https://hcommons.social",
     "https://sciences.social",
+    "https://skeptics.social",
 ];
 
 fn update_statuses(cx: Scope) {
@@ -173,6 +174,72 @@ fn About(cx: Scope) -> Element {
 
                     }
                 }
+            }
+        }
+        p {
+            "Supported Sites",
+            ul {
+                li {
+                    "genomic.social"
+                }
+                li {
+                    "ecoevo.social"
+                }
+                li {
+                    "fediscience.org"
+                }
+                li {
+                    "scicomm.xyz"
+                }
+                li {
+                    "Mathstodon.xyz"
+                }
+                li {
+                    "idf.social"
+                }
+                li {
+                    "red.niboe.info"
+                }
+                li {
+                    "sigmoid.social"
+                }
+                li {
+                    "med-mastodon.com"
+                }
+                li {
+                    "sciencemastodon.com"
+                }
+                li {
+                    "drosophila.social"
+                }
+                li {
+                    "astrodon.social"
+                }
+                li {
+                    "deepspace.social"
+                }
+                li {
+                    "spacey.space"
+                }
+                li {
+                    "hci.social"
+                }
+                li {
+                    "vis.social"
+                }
+                li {
+                    "hcommons.social"
+                }
+                li {
+                    "sciences.social"
+                }
+                li {
+                    "skeptics.social"
+                }
+                li {
+                    "sci.kiwi"
+                }
+
             }
         }
     ))
