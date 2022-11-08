@@ -1,3 +1,14 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 800px) {
+  .container {
+    flex-direction: column;
+  }
+}
+
 .columns {
   display: flex;
   flex-direction: row;
@@ -11,9 +22,10 @@
 }
 
 .middle_column {
-  flex: 50%;
+  flex: 70%;
   background-color: rgb(40,44,55);
   text-align: center;
+  min-width: 0;
 }
 
 .right_column {
@@ -21,6 +33,13 @@
   background-color: rgb(25,27,34);
   text-align: left;
   padding: 25px;
+}
+
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (max-width: 800px) {
+  .right_column, .middle_column {
+    flex: 100%;
+  }
 }
 
 .statuses div {
@@ -31,7 +50,7 @@
 .status {
   padding: 8px 10px 8px 68px;
   position: relative;
-  min-height: 54px;
+  min-height: 62px;
   border-bottom: 1px solid #393f4f;
   cursor: auto;
   opacity: 1;
@@ -129,4 +148,15 @@ body {
 a {
     color: #7da3c4;
     text-decoration: none;
+}
+
+a:active {
+  text-decoration: underline;
+}
+
+.status_spoiler {
+  /* Upper-case */
+  text-transform: uppercase;
+  background-color: rgb(54,69,79);
+
 }

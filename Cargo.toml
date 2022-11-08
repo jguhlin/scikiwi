@@ -28,5 +28,8 @@ dioxus = { version = "0.2.4", features = ["web", "fermi"] }
 reqwest-wasm = {version = "0.11.15", features = ["json"] }
 #redis = { version = "0.22.1", features = ["tokio", "serde", "serde_json", "tokio-comp"] }
 # fermi = { version = "0.2.1" }
+#blurhash-ng = "0.1.2"
+#base64 = "0.13.1"
+#png = "0.17.7"
 
 # https://github.com/DioxusLabs/taffy

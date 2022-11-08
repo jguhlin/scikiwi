@@ -3,6 +3,7 @@ use dioxus::fermi::*;
 use dioxus::prelude::*;
 use serde::{Deserialize, Serialize};
 use serde_json::from_str;
+// use blurhash_ng::encode;
 
 use std::collections::HashMap;
 use std::time::Duration;
@@ -105,9 +106,6 @@ fn app(cx: Scope) -> Element {
         div { 
             class: "columns",
             div {
-                class: "left_column"
-            },
-            div {
                 class: "middle_column",
                 Statuses {},
             },
@@ -124,6 +122,8 @@ fn About(cx: Scope) -> Element {
         img {
             src: "text_bubbles.png",
             style: "width: 100%;",
+            width: "128",
+            height: "128",
         }
         p {
             "This is an very early version of my aggregator. I've been learning the framework, and been doing genomics much longer than HTML/CSS lately! So give me some time. I can picture this becoming a full client as well."
@@ -242,6 +242,20 @@ fn About(cx: Scope) -> Element {
 
             }
         }
+
+        p {
+            strong {
+                "TODO"
+            }
+            ul {
+                li {
+                    "Images, but blurhash first for sensitive content!"
+                }
+                li {
+                    "Enter your own server name, so you can save an extra click when interacting with posts"
+                }
+            }
+        }
     ))
 }
 
@@ -265,6 +279,8 @@ fn Statuses(cx: Scope) -> Element {
                             acct: s.account.acct.clone(),
                             account_url: s.account.url.clone(),
                             url: s.interact_url.as_ref().unwrap().clone(),
+                            spoiler_text: s.spoiler_text.clone(),
+                            media_attachments: s.media_attachments.clone(),
                         }
                 )
             })
@@ -303,10 +319,49 @@ fn StatusItem(cx: Scope<StatusProps>) -> Element {
                     src: "{cx.props.avatar}" }
                 p { class: "status_author", "{cx.props.display_name} (Click to View Profile)" }
             }
-            p {
-                class: "status_content",
-                dangerous_inner_html: "{cx.props.content}"
+
+            if !cx.props.spoiler_text.is_empty() {
+                rsx!(cx, details {
+                    summary {
+                        class: "status_spoiler",
+                        dangerous_inner_html: "{cx.props.spoiler_text}"
+                    }
+                    p {
+                        dangerous_inner_html: "{cx.props.content}"
+                    }
+                }
+            )
+            } else {
+                rsx!(cx, p {
+                    class: "status_content",
+                    dangerous_inner_html: "{cx.props.content}"
+                })
             }
+
+            /*
+            if !cx.props.media_attachments.is_empty() {
+                rsx!(cx, div {
+                    class: "status_media",
+                    cx.props.media_attachments.iter().filter(|x| x.blurhash.is_some()).map(|m| {
+                        let blurhash = m.blurhash.as_ref().unwrap();
+                        let res = blurhash_ng::decode(blurhash, 64, 64, 0.75);
+                        let data = format!("data:image/png;base64,{}", base64::encode(res));
+                        let desc = m.description.as_ref().unwrap_or(&String::new()).clone();
+                        rsx!(
+                            img {
+                                alt: "{desc}",
+                                src: "{data}",
+                                width: "64",
+                                height: "64",
+                            }
+                        )
+                    })
+                })
+             } else {
+                    None
+                }
+                */
+
             p {
                 a {
                     href: "{cx.props.url}",
@@ -352,4 +407,6 @@ pub struct StatusProps {
     pub created_at: String,
     pub url: String,
     pub account_url: String,
+    pub spoiler_text: String,
+    pub media_attachments: Vec<Attachment>,
 }

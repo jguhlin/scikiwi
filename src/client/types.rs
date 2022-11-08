@@ -133,7 +133,7 @@ pub struct Field {
     pub verified_at: Option<String>,
 }
 
-#[derive(Deserialize, Serialize, Debug, PartialEq)]
+#[derive(Deserialize, Serialize, Debug, PartialEq, Clone)]
 pub enum MediaType {
     #[serde(rename = "image")]
     Image,
@@ -148,7 +148,7 @@ pub enum MediaType {
 }
 
 // https://docs.joinmastodon.org/entities/attachment/
-#[derive(Deserialize, Serialize, Debug, PartialEq, Props)]
+#[derive(Deserialize, Serialize, Debug, PartialEq, Props, Clone)]
 pub struct Attachment {
     pub id: String,
     #[serde(rename = "type")]
@@ -162,13 +162,13 @@ pub struct Attachment {
     pub text_url: Option<String>, // Deprecated
 }
 
-#[derive(Deserialize, Serialize, Debug, PartialEq, Props)]
+#[derive(Deserialize, Serialize, Debug, PartialEq, Props, Clone)]
 pub struct Focus {
     pub x: f64,
     pub y: f64,
 }
 
-#[derive(Deserialize, Serialize, Debug, PartialEq, Props)]
+#[derive(Deserialize, Serialize, Debug, PartialEq, Props, Clone)]
 
 pub struct Meta {
     pub original: Original,
@@ -176,7 +176,7 @@ pub struct Meta {
     pub focus: Option<Focus>,
 }
 
-#[derive(Deserialize, Serialize, Debug, PartialEq, Props)]
+#[derive(Deserialize, Serialize, Debug, PartialEq, Props, Clone)]
 pub struct Original {
     pub width: u64,
     pub height: u64,
@@ -184,7 +184,7 @@ pub struct Original {
     pub aspect: Option<f64>,
 }
 
-#[derive(Deserialize, Serialize, Debug, PartialEq, Props)]
+#[derive(Deserialize, Serialize, Debug, PartialEq, Props, Clone)]
 pub struct Small {
     pub width: u64,
     pub height: u64,
