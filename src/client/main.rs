@@ -302,7 +302,6 @@ fn StatusItem(cx: Scope<StatusProps>) -> Element {
                 img { class: "status_avatar",
                     src: "{cx.props.avatar}" }
                 p { class: "status_author", "{cx.props.display_name} (Click to View Profile)" }
-                p { class: "status_acct", "{cx.props.acct}" }
             }
             p {
                 class: "status_content",
