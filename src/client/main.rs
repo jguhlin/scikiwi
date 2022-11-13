@@ -104,13 +104,13 @@ fn app(cx: Scope) -> Element {
 
     cx.render(rsx! (
         div { 
-            class: "columns",
+            class: "grid grid-flow-col gap-3",
             div {
-                class: "middle_column",
+                class: "bg-gray-500 col-span-4",
                 Statuses {},
             },
             div {
-                class: "right_column",
+                class: "top-0 right-0 w-256 col-span-1",
                 About {},
             }
         }
@@ -121,9 +121,9 @@ fn About(cx: Scope) -> Element {
     cx.render(rsx! (
         img {
             src: "text_bubbles.png",
-            style: "width: 100%;",
-            width: "128",
-            height: "128",
+            width: "256",
+            height: "256",
+            class: "w-125"
         }
         p {
             "This is an very early version of my aggregator. I've been learning the framework, and been doing genomics much longer than HTML/CSS lately! So give me some time. I can picture this becoming a full client as well."
@@ -291,8 +291,7 @@ fn Statuses(cx: Scope) -> Element {
 fn ServerIcon(cx: Scope<ServerIconProps>) -> Element {
     cx.render(rsx!(img {
         src: "{cx.props.icon}",
-        width: "64",
-        height: "64",
+        class: "w-16 h-16",
     }))
 }
 
@@ -305,19 +304,26 @@ fn StatusItem(cx: Scope<StatusProps>) -> Element {
     cx.render(rsx! (
         div {
             class: "status",
-            if cx.props.server_icon.is_some() && !cx.props.server_icon.as_ref().unwrap().is_empty() {
-                rsx!(cx, ServerIcon {
-                    icon: cx.props.server_icon.as_ref().unwrap().clone(),
-                })
-            } else {
-                rsx!(cx, p {
-                    style: "width: 64px; height: 64px; background-color: #000;"
-                })
-            }
-            a { href: "{cx.props.account_url}",
-                img { class: "status_avatar",
-                    src: "{cx.props.avatar}" }
-                p { class: "status_author", "{cx.props.display_name} (Click to View Profile)" }
+            div {
+                class: "flex flex-row",
+
+                if cx.props.server_icon.is_some() && !cx.props.server_icon.as_ref().unwrap().is_empty() {
+                    rsx!(cx, ServerIcon {
+                        icon: cx.props.server_icon.as_ref().unwrap().clone(),
+                    })
+                } else {
+                    rsx!(cx, p {
+                        class: "w-16 h-16",
+                    })
+                }
+
+                a { href: "{cx.props.account_url}",
+                    img { class: "w-16 h-16",
+                        src: "{cx.props.avatar}" }
+                }
+                a { href: "{cx.props.account_url}",
+                    p { class: "status_author", "{cx.props.display_name} (Click to View Profile)" }
+                }
             }
 
             if !cx.props.spoiler_text.is_empty() {
